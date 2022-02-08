@@ -11,6 +11,7 @@ import {
   Toolbar,
   Tooltip
 } from '@mui/material';
+import Blockie from "../Blockie"
 import { styled } from '@mui/material/styles';
 import { Menu as MenuIcon } from '../../icons/menu';
 import { AccountPopover } from './account-popover';
@@ -22,6 +23,7 @@ import { Bell as BellIcon } from '../../icons/bell';
 import { UserCircle as UserCircleIcon } from '../../icons/user-circle';
 import { Search as SearchIcon } from '../../icons/search';
 import { Users as UsersIcon } from '../../icons/users';
+import { useAuth } from "../../hooks/use-auth"
 
 const languages = {
   en: '/static/icons/uk_flag.svg',
@@ -199,11 +201,12 @@ const AccountButton = () => {
   const anchorRef = useRef(null);
   const [openPopover, setOpenPopover] = useState(false);
   // To get the user from the authContext, you can use
-  // `const { user } = useAuth();`
-  const user = {
-    avatar: '/static/mock-images/avatars/avatar-anika_visser.png',
-    name: 'Anika Visser'
-  };
+   const { user } = useAuth();
+  // const user = {
+  //   avatar: '/static/mock-images/avatars/avatar-anika_visser.png',
+  //   name: 'Anika Visser'
+
+  // };
 
   const handleOpenPopover = () => {
     setOpenPopover(true);
@@ -215,6 +218,8 @@ const AccountButton = () => {
 
   return (
     <>
+    
+
       <Box
         component={ButtonBase}
         onClick={handleOpenPopover}
@@ -225,15 +230,20 @@ const AccountButton = () => {
           ml: 2
         }}
       >
+
         <Avatar
           sx={{
+            pl: .55,
             height: 40,
             width: 40
           }}
-          src={user.avatar}
+          //src={user?.avatar}
+          
         >
-          <UserCircleIcon fontSize="small" />
+          {/* <UserCircleIcon fontSize="small" /> */}
+          <Blockie currentWallet size={8} scale={4} />,
         </Avatar>
+        
       </Box>
       <AccountPopover
         anchorEl={anchorRef.current}

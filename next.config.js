@@ -12,13 +12,30 @@ module.exports = withTM({
   reactStrictMode: true,
   webpack(config) {
     config.module.rules.push({
+      type: 'asset',
+      resourceQuery: /url/, // *.svg?url
+    },{
+      resolve: {
+        fallback: {
+          assert: require.resolve('assert'),
+          crypto: require.resolve('crypto-browserify'),
+          http: require.resolve('stream-http'),
+          https: require.resolve('https-browserify'),
+            os: require.resolve('os-browserify/browser'),
+            stream: require.resolve('stream-browserify'), 
+        }
+      },
+      
       test: /\.svg$/i,
       issuer: { and: [/\.(js|ts|md)x?$/] },
       use: [
+        
         {
-          loader: '@svgr/webpack',
+          loader: "@svgr/webpack",
+           
           options: {
             svgoConfig: { plugins: [{ removeViewBox: false }] }
+
           }
         }
       ]

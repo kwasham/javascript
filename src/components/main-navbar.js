@@ -1,41 +1,56 @@
-import PropTypes from 'prop-types';
-import NextLink from 'next/link';
-import { AppBar, Box, Button, Container, IconButton, Link, Toolbar } from '@mui/material';
-import { Menu as MenuIcon } from '../icons/menu';
-import { Logo } from './logo';
+import PropTypes from "prop-types";
+import { useState } from "react";
+import NextLink from "next/link";
+import { SimpleDialog } from "../components/SimpleDialog";
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  IconButton,
+  Link,
+  Toolbar,
+} from "@mui/material";
+import { Menu as MenuIcon } from "../icons/menu";
+import { Logo } from "./logo";
 
 export const MainNavbar = (props) => {
   const { onOpenSidebar } = props;
+  const [open, setOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState("Metamask");
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (value) => {
+    setOpen(false);
+    //setSelectedValue(value)
+  };
 
   return (
     <AppBar
       elevation={0}
       sx={{
-        backgroundColor: 'background.paper',
-        borderBottomColor: 'divider',
-        borderBottomStyle: 'solid',
+        backgroundColor: "background.paper",
+        borderBottomColor: "divider",
+        borderBottomStyle: "solid",
         borderBottomWidth: 1,
-        color: 'text.secondary'
+        color: "text.secondary",
       }}
     >
       <Container maxWidth="lg">
-        <Toolbar
-          disableGutters
-          sx={{ minHeight: 64 }}
-        >
-          <NextLink
-            href="/"
-            passHref
-          >
+        <Toolbar disableGutters sx={{ minHeight: 64 }}>
+          <NextLink href="/" passHref>
             <a>
               <Logo
                 sx={{
                   display: {
-                    md: 'inline',
-                    xs: 'none'
+                    md: "inline",
+                    xs: "none",
                   },
                   height: 40,
-                  width: 40
+                  width: 40,
                 }}
               />
             </a>
@@ -46,37 +61,27 @@ export const MainNavbar = (props) => {
             onClick={onOpenSidebar}
             sx={{
               display: {
-                md: 'none'
-              }
+                md: "none",
+              },
             }}
           >
             <MenuIcon fontSize="small" />
           </IconButton>
           <Box
             sx={{
-              alignItems: 'center',
+              alignItems: "center",
               display: {
-                md: 'flex',
-                xs: 'none'
-              }
+                md: "flex",
+                xs: "none",
+              },
             }}
           >
-            <NextLink
-              href="/dashboard"
-              passHref
-            >
-              <Link
-                color="textSecondary"
-                underline="none"
-                variant="subtitle2"
-              >
+            <NextLink href="/dashboard" passHref>
+              <Link color="textSecondary" underline="none" variant="subtitle2">
                 Prices
               </Link>
             </NextLink>
-            <NextLink
-              href="/browse"
-              passHref
-            >
+            <NextLink href="/browse" passHref>
               <Link
                 color="textSecondary"
                 sx={{ ml: 2 }}
@@ -86,10 +91,7 @@ export const MainNavbar = (props) => {
                 Learn
               </Link>
             </NextLink>
-            <NextLink
-              href="/docs/welcome"
-              passHref
-            >
+            <NextLink href="/docs/welcome" passHref>
               <Link
                 color="textSecondary"
                 component="a"
@@ -100,10 +102,7 @@ export const MainNavbar = (props) => {
                 Individuals
               </Link>
             </NextLink>
-            <NextLink
-              href="/docs/welcome"
-              passHref
-            >
+            <NextLink href="/docs/welcome" passHref>
               <Link
                 color="textSecondary"
                 component="a"
@@ -114,10 +113,7 @@ export const MainNavbar = (props) => {
                 Businesses
               </Link>
             </NextLink>
-            <NextLink
-              href="/docs/welcome"
-              passHref
-            >
+            <NextLink href="/docs/welcome" passHref>
               <Link
                 color="textSecondary"
                 component="a"
@@ -128,10 +124,7 @@ export const MainNavbar = (props) => {
                 Developers
               </Link>
             </NextLink>
-            <NextLink
-              href="/docs/welcome"
-              passHref
-            >
+            <NextLink href="/docs/welcome" passHref>
               <Link
                 color="textSecondary"
                 component="a"
@@ -144,7 +137,7 @@ export const MainNavbar = (props) => {
             </NextLink>
             <Button
               component="a"
-              href="https://material-ui.com/store/items/devias-kit-pro"
+              href="/tester"
               size="medium"
               sx={{ ml: 2 }}
               target="_blank"
@@ -154,14 +147,15 @@ export const MainNavbar = (props) => {
             </Button>
             <Button
               component="a"
-              href="/dashboard"
+              //href="/dashboard"
               size="medium"
               sx={{ ml: 2 }}
-              //target="_blank"
               variant="contained"
+              onClick={handleClickOpen}
             >
-              Sign In
+              Connect Wallet
             </Button>
+            <SimpleDialog open={open} onClose={handleClose} />
           </Box>
         </Toolbar>
       </Container>
@@ -170,5 +164,5 @@ export const MainNavbar = (props) => {
 };
 
 MainNavbar.propTypes = {
-  onOpenSidebar: PropTypes.func
+  onOpenSidebar: PropTypes.func,
 };

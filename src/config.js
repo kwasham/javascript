@@ -21,6 +21,11 @@ export const firebaseConfig = {
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
 };
 
+export const authMoralis = {
+  appId: process.env.NEXT_PUBLIC_APP_ID,
+  serverUrl: process.env.NEXT_PUBLIC_SERVER_URL,
+}
+
 export const gtmConfig = {
   containerId: process.env.NEXT_PUBLIC_GTM_CONTAINER_ID
 };

@@ -10,7 +10,9 @@ import { HomeFeatures } from '../components/home/home-features';
 import { HomeTestimonials } from '../components/home/home-testimonials';
 import { gtm } from '../lib/gtm';
 
+
 const Home = () => {
+  
   useEffect(() => {
     gtm.push({ event: 'page_view' });
   }, []);

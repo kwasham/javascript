@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { Box, Button, Checkbox, FormHelperText, TextField, Typography, Link } from '@mui/material';
+import { Box, Button, Checkbox, FormHelperText, TextField, Typography, Link, Modal } from '@mui/material';
 import { useAuth } from '../../hooks/use-auth';
 import { useMounted } from '../../hooks/use-mounted';
 

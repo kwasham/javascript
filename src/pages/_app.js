@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import {MoralisProvider} from 'react-moralis'
 import Head from 'next/head';
 import Router from 'next/router';
 import { Toaster } from 'react-hot-toast';
@@ -13,7 +14,7 @@ import { RTL } from '../components/rtl';
 import { SettingsButton } from '../components/settings-button';
 import { SplashScreen } from '../components/splash-screen';
 import { SettingsConsumer, SettingsProvider } from '../contexts/settings-context';
-import { AuthConsumer, AuthProvider } from '../contexts/jwt-context';
+import { AuthConsumer, AuthProvider } from '../contexts/web3-context';
 import { gtmConfig } from '../config';
 import { gtm } from '../lib/gtm';
 import { store } from '../store';
@@ -47,6 +48,10 @@ const App = (props) => {
           content="initial-scale=1, width=device-width"
         />
       </Head>
+      <MoralisProvider
+      appId={process.env.NEXT_PUBLIC_APP_ID}
+      serverUrl={process.env.NEXT_PUBLIC_SERVER_URL}
+    >
       <ReduxProvider store={store}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <AuthProvider>
@@ -79,6 +84,7 @@ const App = (props) => {
           </AuthProvider>
         </LocalizationProvider>
       </ReduxProvider>
+    </MoralisProvider>
     </CacheProvider>
   );
 };

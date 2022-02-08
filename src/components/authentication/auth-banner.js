@@ -5,7 +5,8 @@ const platformIcons = {
   Amplify: '/static/icons/amplify.svg',
   Auth0: '/static/icons/auth0.svg',
   Firebase: '/static/icons/firebase.svg',
-  JWT: '/static/icons/jwt.svg'
+  JWT: '/static/icons/jwt.svg',
+  WEB3: '/static/icons/wallet.svg'
 };
 
 export const AuthBanner = () => (
@@ -78,6 +79,12 @@ export const AuthBanner = () => (
             <img
               alt="JWT"
               src={platformIcons.JWT}
+            />
+          </Tooltip>
+          <Tooltip title="Web 3 Wallet">
+            <img
+              alt="WEB3"
+              src={platformIcons.WEB3}
             />
           </Tooltip>
         </Box>

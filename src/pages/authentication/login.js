@@ -9,6 +9,7 @@ import { AmplifyLogin } from '../../components/authentication/amplify-login';
 import { Auth0Login } from '../../components/authentication/auth0-login';
 import { FirebaseLogin } from '../../components/authentication/firebase-login';
 import { JWTLogin } from '../../components/authentication/jwt-login';
+import {Web3Login} from "../../components/authentication/web3-login"
 import { Logo } from '../../components/logo';
 import { useAuth } from '../../hooks/use-auth';
 import { gtm } from '../../lib/gtm';
@@ -17,7 +18,8 @@ const platformIcons = {
   Amplify: '/static/icons/amplify.svg',
   Auth0: '/static/icons/auth0.svg',
   Firebase: '/static/icons/firebase.svg',
-  JWT: '/static/icons/jwt.svg'
+  JWT: '/static/icons/jwt.svg',
+  WEB3: '/static/icons/wallet.svg'
 };
 
 const Login = () => {
@@ -135,6 +137,7 @@ const Login = () => {
               {platform === 'Auth0' && <Auth0Login />}
               {platform === 'Firebase' && <FirebaseLogin />}
               {platform === 'JWT' && <JWTLogin />}
+              {platform === 'WEB3' && <Web3Login />}
             </Box>
             <Divider sx={{ my: 3 }} />
             <NextLink

@@ -12,6 +12,7 @@ import {
   Popover,
   Typography
 } from '@mui/material';
+import Blockie from '../Blockie';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useAuth } from '../../hooks/use-auth';
 import { Cog as CogIcon } from '../../icons/cog';
@@ -21,18 +22,18 @@ import { SwitchHorizontalOutlined as SwitchHorizontalOutlinedIcon } from '../../
 export const AccountPopover = (props) => {
   const { anchorEl, onClose, open, ...other } = props;
   const router = useRouter();
-  const { logout } = useAuth();
+  const { moralisLogout } = useAuth();
   // To get the user from the authContext, you can use
-  // `const { user } = useAuth();`
-  const user = {
-    avatar: '/static/mock-images/avatars/avatar-anika_visser.png',
-    name: 'Anika Visser'
-  };
+   const { user } = useAuth();
+  // const user = {
+  //   avatar: '/static/mock-images/avatars/avatar-anika_visser.png',
+  //   name: 'Anika Visser'
+  // };
 
   const handleLogout = async () => {
     try {
       onClose?.();
-      await logout();
+      await moralisLogout();
       router.push('/');
     } catch (err) {
       console.error(err);
@@ -41,6 +42,7 @@ export const AccountPopover = (props) => {
   };
 
   return (
+    
     <Popover
       anchorEl={anchorEl}
       anchorOrigin={{
@@ -61,13 +63,15 @@ export const AccountPopover = (props) => {
         }}
       >
         <Avatar
-          src={user.avatar}
+        
+          //src={}
           sx={{
             height: 40,
             width: 40
           }}
+          alt='Kirk Washam'
         >
-          <UserCircleIcon fontSize="small" />
+          <Blockie currentWallet scale={4} />
         </Avatar>
         <Box
           sx={{
@@ -75,7 +79,7 @@ export const AccountPopover = (props) => {
           }}
         >
           <Typography variant="body1">
-            {user.name}
+            {user?.name}
           </Typography>
           <Typography
             color="textSecondary"
@@ -154,6 +158,7 @@ export const AccountPopover = (props) => {
       </Box>
     </Popover>
   );
+  
 };
 
 AccountPopover.propTypes = {
